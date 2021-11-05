@@ -5,7 +5,9 @@ const button = document.getElementById('button');
 async function selectMediaStream() {
 	try {
 		const mediaStream = await navigator.mediaDevices.getDisplayMedia();
+		//the media stream will pass to a video source object 
 		videoElement.srcObject = mediaStream;
+		//once video is loaded, the video will play
 		videoElement.onloadedmetadata = () => {
 			videoElement.play();
 		}
@@ -19,7 +21,7 @@ button.addEventListener('click', async () => {
 	button.disable = true;
 	//Start Picture in Picture
 	await videoElement.requestPictureInPicture();
-	//Reset Button
+	//Reset Button only if video picture in picture is succefully requested
 	button.disable = false;
 });
 
